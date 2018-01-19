@@ -9,7 +9,9 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  Image,
+  View,
+  ScrollView
 } from 'react-native';
 
 import Api from './Api';
@@ -27,21 +29,24 @@ export default class App extends Component<{}> {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Welcome to List</Text>
-        
-      </View>
+      {this.state.users.map(user=>(
+          <View key={user.id} style={styles.listItem}>
+            <Image source={{uri: user.avatar_url}} style={styles.avatar} />
+            <Text style={styles.title}>{user.login}</Text>
+          </View>
+        ))}
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#F5FCFF',
   },
   listItem: {
-    flex: 1,
     padding: 20,
     borderBottomWidth: 1,
     borderBottomColor: '#cccc'
@@ -51,5 +56,9 @@ const styles = StyleSheet.create({
     padding: 20,
     fontSize: 20,
     fontWeight: '700'
+  },
+  avatar: {
+    width: "100%",
+    height: 200
   }
 });
