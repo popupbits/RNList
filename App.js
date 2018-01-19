@@ -37,11 +37,9 @@ export default class App extends Component<{}> {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#F5FCFF',
   },
   listItem: {
-    flex: 1,
     padding: 20,
     borderBottomWidth: 1,
     borderBottomColor: '#cccc'
@@ -51,5 +49,9 @@ const styles = StyleSheet.create({
     padding: 20,
     fontSize: 20,
     fontWeight: '700'
+  },
+  avatar: {
+    width: "100%",
+    height: 200
   }
 });
