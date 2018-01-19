@@ -11,7 +11,8 @@ import {
   Text,
   Image,
   View,
-  ScrollView
+  ScrollView,
+  FlatList
 } from 'react-native';
 
 import Api from './Api';
@@ -29,15 +30,18 @@ export default class App extends Component<{}> {
 
   render() {
     return (
-      <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Welcome to List</Text>
-      {this.state.users.map(user=>(
-          <View key={user.id} style={styles.listItem}>
-            <Image source={{uri: user.avatar_url}} style={styles.avatar} />
-            <Text style={styles.title}>{user.login}</Text>
+
+      <FlatList
+        ListHeaderComponent={()=><Text style={styles.title}>Welcome to List</Text>}
+        data={this.state.users}
+        renderItem={({item})=> (
+          <View style={styles.listItem}>
+            <Image source={{uri: item.avatar_url}} style={styles.avatar} />
+            <Text style={styles.title}>{item.login}</Text>
           </View>
-        ))}
-      </ScrollView>
+        )}
+        keyExtractor={(item)=>item.id}
+      />
     );
   }
 }
